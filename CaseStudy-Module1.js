@@ -36,7 +36,7 @@ function displayTriangle2()
         document.getElementById("result_22").innerHTML = str;
     };
 
-// TASK 2 - BÀI 2: VẼ TAM GIÁC CÂN RỖNG CÓ CHIỀU CAO H = 5 DO NGƯỜI DÙNG NHẬP VÀO
+// TASK 2 - BÀI 3: VẼ TAM GIÁC CÂN RỖNG CÓ CHIỀU CAO H = 5 DO NGƯỜI DÙNG NHẬP VÀO
 function displayTriangle3()
     {
         let h = +document.getElementById("heightTriangle3").value;
@@ -67,8 +67,8 @@ function showPrefixSum()
             for (let i = 0; i < n; i++)
                 {
                     arrA[i] = +prompt ('Nhập giá trị của phần tử thứ ' + i);
-                    arrB[0] = arrA[0];
-                    if (i > 0) arrB[i] = arrB[i-1] + arrA[i];
+                    if (i === 0) arrB[0] = arrA[0];
+                    else arrB[i] = arrB[i-1] + arrA[i];
                 };
         document.getElementById("result_311").innerText = "Mảng A là: [" + arrA.join("; ") + "]";
         document.getElementById("result_312").innerText = "Mảng B là: [" + arrB.join("; ") + "]";
@@ -123,4 +123,32 @@ function showIndex()
             };
         let t = fraction.indexOf(max);
         document.getElementById("result_33").innerText = "Vị trí của phân số lớn nhất là: " + t + ", có giá trị là: " + numerators[t] + "/" + denominators[t];
+    };
+
+// TASK 3 - BÀI 4:
+let unitPrice = [15000, 20000, 25000, 22000, 10000, 30000];
+let checkbox = document.getElementsByName("drink");
+
+function chooseDrink()
+    {
+        let i = 0;
+        let index;
+
+        while (i < checkbox.length)
+            {    
+                if (checkbox[i].checked)
+                    {
+                        index = i;
+                        break;
+                    }
+                i += 1;
+            };
+        document.getElementById("price").innerText = "Đơn giá: " + unitPrice[index];
+        let q = +document.getElementById("quantity").value;
+        return q * unitPrice[index];
+    };
+
+function displayMoney()
+    {
+        document.getElementById("result_34").innerText = "Tổng giá trị: " + chooseDrink() + "VND";
     };

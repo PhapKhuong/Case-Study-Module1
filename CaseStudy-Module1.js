@@ -127,28 +127,69 @@ function showIndex()
 
 // TASK 3 - BÀI 4:
 let unitPrice = [15000, 20000, 25000, 22000, 10000, 30000];
+let drinks = ['drink0', 'drink1', 'drink2', 'drink3', 'drink4', 'drink5']
 let checkbox = document.getElementsByName("drink");
+let value = 0;
 
-function chooseDrink()
+function chooseDrink(ticked)
     {
-        let i = 0;
-        let index;
-
-        while (i < checkbox.length)
-            {    
-                if (checkbox[i].checked)
-                    {
-                        index = i;
-                        break;
-                    }
-                i += 1;
-            };
-        document.getElementById("price").innerText = "Đơn giá: " + unitPrice[index];
-        let q = +document.getElementById("quantity").value;
-        return q * unitPrice[index];
+        let index = drinks.indexOf(ticked);
+        let q = +prompt ("Nhập số lượng");
+        document.getElementById("unitPrice" + index).innerText = unitPrice[index];
+        document.getElementById("quantity" + index).innerText = q;
+        value += q * unitPrice[index];
     };
-
 function displayMoney()
     {
-        document.getElementById("result_34").innerText = "Tổng giá trị: " + chooseDrink() + "VND";
+        document.getElementById("result_34").innerText = "Tổng giá trị: " + value + "VND";
+    };
+
+// TASK 4 - BÀI 1:
+function main()
+    {
+        let firstStr = prompt("Nhập vào một chuỗi");
+        let lastStr = editStr(firstStr);
+        let theLongest = findTheLongest(lastStr);
+
+        document.getElementById("result_411").innerText = "Chuỗi ban đầu là: " + firstStr;
+        document.getElementById("result_412").innerText = "Chuỗi sau khi chuẩn hóa là: " + lastStr;
+        document.getElementById("result_413").innerText = "Từ dài nhất trong chuỗi là là: " + theLongest;
+    };
+
+function editStr(text)
+    {
+        let tempArr = text.split(" ");
+        let i = 0;
+        while (i < tempArr.length)
+            {
+                if (tempArr[i] === "")
+                    {
+                        tempArr.splice(i, 1);
+                    }
+                else i += 1;
+            };
+
+        for (i = 0; i < tempArr.length; i++)
+            {
+                tempArr[i] = tempArr[i].toLowerCase();
+                tempArr[i] = tempArr[i].charAt(0).toUpperCase() + tempArr[i].slice(1);
+            };
+        return tempArr.join(" ");
+    };
+
+function findTheLongest(text)
+    {
+        let tempArr = text.split(" ");
+        let i = 0;
+        let max = tempArr[0].length;
+        let indexMax = 0;
+        for (let i = 0; i < tempArr.length; i++)
+            {
+                if (max < tempArr[i].length)
+                    {
+                        max = tempArr[i].length;
+                        indexMax = i;
+                    };
+            };
+        return tempArr[indexMax];
     };

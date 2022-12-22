@@ -52,24 +52,55 @@
 
     <div>
         <h2>Task 3 - Bài 4:</h2>
-        <div style="border: 1px;">
-            <h3>Danh mục nước giải khát</h3>
-            <input type="radio" name="drink" id="drink1" onclick="chooseDrink()"><label for="drink1">Cafe</label><br>
-            <input type="radio" name="drink" id="drink2" onclick="chooseDrink()"><label for="drink2">Cam vắt</label><br>
-            <input type="radio" name="drink" id="drink3" onclick="chooseDrink()"><label for="drink3">Nước ép cà rốt</label><br>
-            <input type="radio" name="drink" id="drink4" onclick="chooseDrink()"><label for="drink4">Nước ép cà chua</label><br>
-            <input type="radio" name="drink" id="drink5" onclick="chooseDrink()"><label for="drink5">Nước lọc</label><br>
-            <input type="radio" name="drink" id="drink6" onclick="chooseDrink()"><label for="drink6">Nước dừa</label><br>
-            <span id="price"></span><br><br>
-        </div>
-            
-            <h3><label for="quantity">Số lượng</label></h3>
-            <input type="number" id="quantity" style="width: 50px;">
-        <div>
-            <h3>Thanh toán</h3>
-            <button type="button" onclick="displayMoney()">Thành tiền</button>
-            <span id="result_34"></span>
-        </div>
+        <table>
+            <tr>
+                <th style="width: 200px;">Loại nước uống</th>
+                <th style="width: 100px;">Đơn giá</th>
+                <th style="width: 100px;">Số lượng</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="drink" id="drink0" onclick="chooseDrink(this.id)"><label for="drink0">Cafe</label></td>
+                <td><span id="unitPrice0"></span></td>
+                <td><span id="quantity0"></span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="drink" id="drink1" onclick="chooseDrink(this.id)"><label for="drink1">Cam vắt</label></td>
+                <td><span id="unitPrice1"></span></td>
+                <td><span id="quantity1"></span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="drink" id="drink2" onclick="chooseDrink(this.id)"><label for="drink2">Nước ép cà rốt</label></td>
+                <td><span id="unitPrice2"></span></td>
+                <td><span id="quantity2"></span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="drink" id="drink3" onclick="chooseDrink(this.id)"><label for="drink3">Nước ép cà chua</label></td>
+                <td><span id="unitPrice3"></span></td>
+                <td><span id="quantity3"></span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="drink" id="drink4" onclick="chooseDrink(this.id)"><label for="drink4">Nước lọc</label></td>
+                <td><span id="unitPrice4"></span></td>
+                <td><span id="quantity4"></span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="drink" id="drink5" onclick="chooseDrink(this.id)"><label for="drink5">Nước dừa</label></td>
+                <td><span id="unitPrice5"></span></td>
+                <td><span id="quantity5"></span></td>
+            </tr>
+            <tr>
+                <td><button type="button" id="Exit" onclick="displayMoney()">Thành tiền</button></td>
+            </tr>
+        </table>
+        <span id="result_34"></span>
+    </div>
+
+    <div>
+        <h2>Task 4 - Bài 1:</h2>
+        <button type="button" onclick="main()">Kết quả</button><br>
+        <span id="result_411"></span><br>
+        <span id="result_412"></span><br>
+        <span id="result_413"></span>
     </div>
 </body>
 <script src="./CaseStudy-Module1.js"></script>

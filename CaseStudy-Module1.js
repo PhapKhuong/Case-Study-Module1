@@ -193,3 +193,48 @@ function findTheLongest(text)
             };
         return tempArr[indexMax];
     };
+
+// TASK 4 - BÀI 2:
+function showDifCharacters()
+    {
+        let str = prompt("Nhập vào một chuỗi ký tự");
+        document.getElementById("result_421").innerHTML = "Chuỗi ban đầu là: " + str + "<br>" + "Chuỗi chỉ còn các ký tự khác nhau là: " + countDifCharacters(str);
+        document.getElementById("result_422").innerText = "Số lượng ký tự khác nhau có trong chuỗi là: " + countDifCharacters(str).length;
+    };
+
+function countDifCharacters(text)
+    {
+        let i = 0;
+        let w;
+        while (i < text.length)
+            {
+                w = text.charAt(i);
+                if (text.slice(i + 1).includes(w))
+                    {
+                        text = text.slice(0, i + 1) + text.slice(i + 1).split(w).join("");
+                    };
+                i += 1;
+            };
+        return text;
+    };
+
+// TASK 4 - BÀI 3:
+function showInnerJoint()
+    {
+        let str1 = prompt ("Nhập chuỗi số 1");
+        let str2 = prompt ("Nhập chuỗi số 2");
+        document.getElementById("result_431").innerText = "Ký tự chung của 2 chuỗi: " + findInnerJoint(str1, str2).join(", ");
+        document.getElementById("result_432").innerText = "Số ký tự chung là: " + findInnerJoint(str1, str2).length;
+    };
+
+function findInnerJoint(text1, text2)
+    {
+        let arr = [];
+        let w;
+        for (let i = 0; i < text1.length; i++)
+            {
+                w = text1.charAt(i);
+                if (text2.includes(w)) arr.push(w);
+            };
+        return arr;
+    };

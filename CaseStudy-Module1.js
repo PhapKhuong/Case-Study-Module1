@@ -238,3 +238,135 @@ function findInnerJoint(text1, text2)
             };
         return arr;
     };
+
+// TASK 5 - BÀI 1:
+function showEvenNumTotal()
+    {
+        let m = +prompt ("Nhập số hàng của bảng");
+        let n = +prompt ("Nhập số cột của bảng");
+        let arr = [[]];
+
+        for (let i = 0; i < m; i++)
+            {
+                arr[i] = [];
+                for (let j = 0; j < n; j++)
+                    {
+                        arr[i][j] = +prompt("Nhập số tại hàng " + i + " cột " + j);
+                    };
+            };
+        document.getElementById("result_51").innerText = "Tổng các số chẵn trong bảng là: " + calEvenNumTotal(arr);
+    };
+
+function calEvenNumTotal(nums)
+    {   
+        let total = 0;
+        let m = nums.length;
+        let n;
+        for (let i = 0; i < m; i++)
+            {
+                n = nums[i].length;
+                for (let j = 0; j < n; j++)
+                    {
+                        if (nums[i][j] % 2 === 0) total += nums[i][j];
+                    };
+            };
+        return total;
+    };
+
+// TASK 5 - BÀI 2:
+function showPrimeNumber()
+    {
+        let m;
+        let n;
+        let str = "";
+        let arr = [[]];
+        m = +prompt ("Nhập độ lớn của mảng")
+        for (let i = 0; i < m; i++)
+            {
+                arr[i] = [];
+                n = +prompt ("Nhập độ lớn của phần tử thứ " + i)
+                for (let j = 0; j < n; j++)
+                    {
+                        arr[i][j] = +prompt("Nhập giá trị phần tử thứ " + i + "; " + j);
+                        str += arr[i][j] + "; ";
+                    };
+                str += "<br>";
+            };
+        document.getElementById("result_521").innerHTML = "Mảng nhập vào là:<br>" + str;    
+        document.getElementById("result_522").innerText = "Tổng các số nguyên tố trong mảng là: " + calPrimeNumTotal(arr);
+    };
+
+function calPrimeNumTotal(nums)
+    {
+        let total = 0;
+        for (let i = 0; i < nums.length; i++)
+            {
+                for (let j = 0; j < nums[i].length; j++)
+                    {
+                        if (!isPrime(nums[i][j])) total += nums[i][j];
+                    }
+            }
+        return total;
+    };
+
+function isPrime(number)
+    {
+        if (number <= 1) return true;
+        else
+            {
+                for (let i = 2; i < number; i++)
+                    {
+                        if (number % i === 0) return true;
+                    };
+            };
+    };
+
+// TASK 5 - BÀI 3:
+function showMaxMin()
+    {
+        let m;
+        let n;
+        let str = "";
+        let arr = [[]];
+        m = +prompt ("Nhập độ lớn của mảng")
+        for (let i = 0; i < m; i++)
+            {
+                arr[i] = [];
+                n = +prompt ("Nhập độ lớn của phần tử thứ " + i)
+                for (let j = 0; j < n; j++)
+                    {
+                        arr[i][j] = +prompt("Nhập giá trị phần tử thứ " + i + "; " + j);
+                        str += arr[i][j] + "; ";
+                    };
+                str += "<br>";
+            };
+        document.getElementById("result_531").innerHTML = "Mảng nhập vào là:<br>" + str;    
+        document.getElementById("result_532").innerText = "Số lớn nhất trong mảng là: " + findMax(arr);
+        document.getElementById("result_533").innerText = "Số nhỏ nhất trong mảng là: " + findMin(arr);
+    };
+
+function findMax(nums)
+    {
+        let max = nums[0][0];
+        for (let i = 0; i < nums.length; i++)
+            {
+                for (let j = 0; j < nums[i].length; j++)
+                    {
+                        if (max < nums[i][j]) max = nums[i][j];
+                    }
+            }
+        return max;
+    };
+
+function findMin(nums)
+    {
+        let min = nums[0][0];
+        for (let i = 0; i < nums.length; i++)
+            {
+                for (let j = 0; j < nums[i].length; j++)
+                    {
+                        if (min > nums[i][j]) min = nums[i][j];
+                    }
+            }
+        return min;
+    };

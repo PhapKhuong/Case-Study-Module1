@@ -370,3 +370,52 @@ function findMin(nums)
             }
         return min;
     };
+
+// TASK 1 - BÀI 1:
+function showInformation()
+    {
+        let p = +document.getElementById("salary").value;
+        let individual;
+        let netSalary;
+
+        if (p < 7)
+            {
+                individual = p * 0.05;
+                netSalary = p * 0.95;
+            }
+        else if (p < 15)
+            {
+                individual = p * 0.1;
+                netSalary = p * 0.9;
+            }
+        else (p >= 15)
+            {
+                individual = p * 0.2;
+                netSalary = p * 0.8;
+            };
+        document.getElementById ("result_111").innerText = "Thuế thu nhập cá nhân phải đóng là: " + individual + "VND.";
+        document.getElementById ("result_112").innerText = "Lương ròng nhận được là: " + netSalary +"VND.";
+    };
+
+// TASK 1 - BÀI 2:
+function isVowel()
+    {
+        let w = prompt("Nhập vào một ký tự");
+        switch (w)
+            {
+                case 'o':
+                case 'u':
+                case 'i':
+                case 'a':
+                case 'e':
+                case 'O':
+                case 'U':
+                case 'I':
+                case 'A':
+                case 'E':
+                    document.getElementById('result_12').innerText = w + " là một nguyên âm.";
+                    break;
+                default:
+                    document.getElementById('result_12').innerText = w + " không phải là một nguyên âm."
+            };
+    };

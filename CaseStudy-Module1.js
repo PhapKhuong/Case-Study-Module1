@@ -134,10 +134,20 @@ let value = 0;
 function chooseDrink(ticked)
     {
         let index = drinks.indexOf(ticked);
-        let q = +prompt ("Nhập số lượng");
-        document.getElementById("unitPrice" + index).innerText = unitPrice[index];
-        document.getElementById("quantity" + index).innerText = q;
-        value += q * unitPrice[index];
+        if (checkbox[index].checked)
+            {
+                let q = +prompt ("Nhập số lượng");
+                document.getElementById("unitPrice" + index).innerText = unitPrice[index];
+                document.getElementById("quantity" + index).innerText = q;
+                value += q * unitPrice[index];
+            }
+        else 
+            {
+                let uq = document.getElementById("quantity" + index).innerText;
+                value -= uq * unitPrice[index];
+                document.getElementById("unitPrice" + index).innerText = "";
+                document.getElementById("quantity" + index).innerText = "";
+            };
     };
 function displayMoney()
     {
@@ -198,7 +208,7 @@ function findTheLongest(text)
 function showDifCharacters()
     {
         let str = prompt("Nhập vào một chuỗi ký tự");
-        document.getElementById("result_421").innerHTML = "Chuỗi ban đầu là: " + str + "<br>" + "Chuỗi chỉ còn các ký tự khác nhau là: " + countDifCharacters(str);
+        document.getElementById("result_421").innerText = "Chuỗi ban đầu là: " + str + "<br>" + "Chuỗi chỉ còn các ký tự khác nhau là: " + countDifCharacters(str);
         document.getElementById("result_422").innerText = "Số lượng ký tự khác nhau có trong chuỗi là: " + countDifCharacters(str).length;
     };
 

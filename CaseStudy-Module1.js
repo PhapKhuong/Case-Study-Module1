@@ -496,46 +496,124 @@ function update()
         document.getElementById('result6').innerHTML = tableStudents;
     };
 
+function formatId(num)
+    {
+        if (num < 10) return "HV-000" + num;
+        else if (num < 100) return "HV-00" + num;
+        else if (num < 1000) return "HV-0" + num;
+        else if (num > 1000) return "HV-" + num;
+    };
+
+function checkId (str)
+    {
+        if (students.length > 0)
+            {
+                for (let i = 0; i < students.length; i++)
+                    {
+                        if (str === students[i].id)
+                            {
+                                alert ("Mã học viên đã tồn tại");
+                                return true;
+                            };
+                    };
+            };
+    };
+
+function formatBirthday(date)
+    {
+        return date.slice(0, 2) + "/" + date.slice(2, 4) + "/" + date.slice(4, 8);
+    };
+
+function checkName(str)
+    {
+        if (str.length > 50)
+            {   
+                alert ("Họ và tên không quá 50 ký tự");
+                return true;
+            };
+    };
+
+function checkModule(num)
+    {
+        if (num < 1 || num > 6)
+            {
+                alert ("Module chỉ nhận giá trị từ 1 đến 6");
+                return true;
+            };
+    };
+
 function createStudent()
     {
         let student = new Student();
-
-        let inputId = prompt ("Nhập thông tin Mã học viên");
-        let inputName = prompt ("Nhập thông tin Họ và tên học viên");
-        let inputGrade = prompt ("Nhập thông tin Lớp");
-        let inputEmail = prompt ("Nhập thông tin Email");
-        let inputBirthday = prompt ("Nhập thông tin ngày tháng năm sinh");
-        let inputModule = prompt ("Nhập thông tin Module");
-
-        student.setId(inputId);
+        
+        let inputId;
+        do
+            {
+                inputId = +prompt ("Nhập thông tin Mã học viên");
+                student.setId(formatId(inputId));
+            }
+        while (checkId(student.id));
+  
+        let inputName;
+        do
+            {
+                inputName = prompt ("Nhập thông tin Họ và tên học viên");
+            }
+        while (checkName(inputName));
         student.setName(inputName);
+
+        let inputGrade = prompt ("Nhập thông tin Lớp");
         student.setGrade(inputGrade);
+
+        let inputEmail = prompt ("Nhập thông tin Email");
         student.setEmail(inputEmail);
-        student.setBirthday(inputBirthday);
+
+        let inputBirthday = prompt ("Nhập thông tin ngày tháng năm sinh (ddmmyyyy)");
+        student.setBirthday(formatBirthday(inputBirthday));
+
+        let inputModule;
+        do
+            {
+                inputModule = prompt ("Nhập thông tin Module");
+            }
+        while (checkModule(inputModule));
         student.setModule(inputModule);
 
         students.push(student);
         update();
-        return students;
+        return students;   
     };
 
 function alterStudent()
     {
-        let wanted = prompt ("Nhập mã học viên cần sửa thông tin");
+        let wanted = +prompt ("Nhập mã học viên cần sửa thông tin");
         for (let i = 0; i < students.length; i++)
             {
-                if (wanted === students[i].id)
+                if (formatId(wanted) === students[i].id)
                     {
-                        let wantedName = prompt ("Nhập lại họ và tên học viên");
-                        let wantedGrade = prompt ("Nhập lại lớp học viên");
-                        let wantedEmail = prompt ("Nhập lại Email học viên");
-                        let wantedBirthday = prompt ("Nhập lại ngày tháng năm sinh học viên");
-                        let wantedModule = prompt ("Nhập lại module của học viên");
-
+                        let wantedName;
+                        do
+                            {
+                                wantedName = prompt ("Nhập lại họ và tên học viên");
+                            }
+                        while (checkName(wantedName));
                         students[i].setName(wantedName);
+
+                        let wantedGrade = prompt ("Nhập lại lớp học viên");
                         students[i].setGrade(wantedGrade);
+
+                        let wantedEmail = prompt ("Nhập lại Email học viên");
                         students[i].setEmail(wantedEmail);
-                        students[i].setBirthday(wantedBirthday);
+
+                        let wantedBirthday = prompt ("Nhập lại ngày tháng năm sinh học viên  (ddmmyyyy)");
+                        students[i].setBirthday(formatBirthday(wantedBirthday));
+                        
+                        let wantedModule;
+                        do
+                            {
+                                wantedModule = prompt ("Nhập lại module của học viên");
+                            }
+                        while (checkModule(wantedModule));
                         students[i].setModule(wantedModule);
 
                         update();
@@ -547,10 +625,10 @@ function alterStudent()
 
     function deleteStudent()
     {
-        let wanted = prompt ("Nhập mã học viên cần xóa thông tin");
+        let wanted = +prompt ("Nhập mã học viên cần xóa thông tin");
         for (let i = 0; i < students.length; i++)
             {
-                if (wanted === students[i].id)
+                if (formatId(wanted) === students[i].id)
                     {
                         students.splice(i, 1);
                         update();
@@ -559,7 +637,3 @@ function alterStudent()
             };
         alert ("Không tìm thấy học viên có mã số này!");
     };
-
-
-
-

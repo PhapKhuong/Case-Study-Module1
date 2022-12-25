@@ -429,3 +429,137 @@ function isVowel()
                     document.getElementById('result_12').innerText = w + " không phải là một nguyên âm."
             };
     };
+
+//TASK 6:
+class Student
+    {
+        constructor (id, name, grade, email, birthday, module)
+            {
+                this.id = id;
+                this.name = name;
+                this.grade = grade;
+                this.email = email;
+                this.birthday = birthday;
+                this.module = module;
+            };
+        setId (newId)
+            {
+                this.id = newId;
+            };
+        setName (newName)
+            {
+                this.name = newName;
+            };
+        setGrade (newGrade)
+            {
+                this.grade = newGrade;
+            };
+        setEmail (newEmail)
+            {
+                this.email = newEmail;
+            };
+        setBirthday (newBirthday)
+            {
+                this.birthday = newBirthday;
+            };
+        setModule (newModule)
+            {
+                this.module = newModule;
+            };
+    };
+
+let students = [];
+
+function update()
+    {
+        let tableStudents = 
+        '<table style="border: 1px; ">' +
+            '<tr>' +
+                '<th style="width: 80px;">Mã học viên</th>' +
+                '<th style="width: 180px;">Tên học viên</th>' +
+                '<th style="width: 60px;">Lớp</th>' +
+                '<th style="width: 200px;">Email</th>' +
+                '<th style="width: 100px;">Ngày sinh</th>' +
+            '</tr>';
+        for (let i = 0; i < students.length; i++)
+            {
+                tableStudents +=
+                    '<tr>' +
+                        '<td style="text-align: center;">' + students[i].id + '</td>' +
+                        '<td>' + students[i].name + '</td>' +
+                        '<td style="text-align: center;">' + students[i].grade + '</td>' +
+                        '<td style="text-align: center;">' + students[i].email + '</td>' +
+                        '<td style="text-align: center;">' + students[i].birthday + '</td>' +
+                    '</tr>';
+            };
+        tableStudents += '</table>';
+        document.getElementById('result6').innerHTML = tableStudents;
+    };
+
+function createStudent()
+    {
+        let student = new Student();
+
+        let inputId = prompt ("Nhập thông tin Mã học viên");
+        let inputName = prompt ("Nhập thông tin Họ và tên học viên");
+        let inputGrade = prompt ("Nhập thông tin Lớp");
+        let inputEmail = prompt ("Nhập thông tin Email");
+        let inputBirthday = prompt ("Nhập thông tin ngày tháng năm sinh");
+        let inputModule = prompt ("Nhập thông tin Module");
+
+        student.setId(inputId);
+        student.setName(inputName);
+        student.setGrade(inputGrade);
+        student.setEmail(inputEmail);
+        student.setBirthday(inputBirthday);
+        student.setModule(inputModule);
+
+        students.push(student);
+        update();
+        return students;
+    };
+
+function alterStudent()
+    {
+        let wanted = prompt ("Nhập mã học viên cần sửa thông tin");
+        for (let i = 0; i < students.length; i++)
+            {
+                if (wanted === students[i].id)
+                    {
+                        let wantedName = prompt ("Nhập lại họ và tên học viên");
+                        let wantedGrade = prompt ("Nhập lại lớp học viên");
+                        let wantedEmail = prompt ("Nhập lại Email học viên");
+                        let wantedBirthday = prompt ("Nhập lại ngày tháng năm sinh học viên");
+                        let wantedModule = prompt ("Nhập lại module của học viên");
+
+                        students[i].setName(wantedName);
+                        students[i].setGrade(wantedGrade);
+                        students[i].setEmail(wantedEmail);
+                        students[i].setBirthday(wantedBirthday);
+                        students[i].setModule(wantedModule);
+
+                        update();
+                        return students;
+                    };
+            };
+        alert ("Không tìm thấy học viên có mã số này!");
+    };
+
+    function deleteStudent()
+    {
+        let wanted = prompt ("Nhập mã học viên cần xóa thông tin");
+        for (let i = 0; i < students.length; i++)
+            {
+                if (wanted === students[i].id)
+                    {
+                        students.splice(i, 1);
+                        update();
+                        return students;
+                    };
+            };
+        alert ("Không tìm thấy học viên có mã số này!");
+    };
+
+
+
+

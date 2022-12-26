@@ -244,7 +244,11 @@ function findInnerJoint(text1, text2)
         for (let i = 0; i < text1.length; i++)
             {
                 w = text1.charAt(i);
-                if (text2.includes(w)) arr.push(w);
+                if (text2.includes(w))
+                    {
+                        arr.push(w);
+                        text2 = text2.replace(w, "");
+                    };
             };
         return arr;
     };
@@ -623,7 +627,7 @@ function alterStudent()
         alert ("Không tìm thấy học viên có mã số này!");
     };
 
-    function deleteStudent()
+function deleteStudent()
     {
         let wanted = +prompt ("Nhập mã học viên cần xóa thông tin");
         for (let i = 0; i < students.length; i++)
